@@ -27,7 +27,7 @@ Resources:
   HelloWorld:
     Type: AWS::Serverless::Function
     Properties:
-      FunctionName: !Sub 'awscodestar-${ProjectId}-lambda-HelloWorld'
+      FunctionName: !Sub 'awscodestar-${ProjectId}-lambda-openbanking'
       Handler: index.handler
       Runtime: python3.7
       Role:
