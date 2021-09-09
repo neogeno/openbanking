@@ -11,7 +11,7 @@ class TestHandlerCase(unittest.TestCase):
   "resource": "/{proxy+}",
   "path": "/live/credit-cards",
   "httpMethod": "GET",
-  "isBase64Encoded": true,
+  "isBase64Encoded": "True",
   "queryStringParameters": {
     "foo": "bar"
   },
