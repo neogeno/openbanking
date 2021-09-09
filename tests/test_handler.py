@@ -1,6 +1,6 @@
 import unittest
 import index
-from tests.testevent import eventobj
+from testevent import eventobj
 
 class TestHandlerCase(unittest.TestCase):
 
