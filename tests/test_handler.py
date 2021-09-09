@@ -2,12 +2,12 @@ import unittest
 import index
 from testevent import eventobj
 
+
 class TestHandlerCase(unittest.TestCase):
 
     def test_response(self):
-        print("testing response.")
-        print(eventobj)
-        result = index.lambda_handler(eventobj,{})
+        print("testing Lambda response with credit-card event object")
+        result = index.lambda_handler(eventobj, {})
         print(result)
         self.assertEqual(result['statusCode'], 200)
         self.assertEqual(result['headers']['Content-Type'], 'application/json')
