@@ -53,7 +53,7 @@ def lambda_handler(event, context):
         new_format = []
         for i in range(len(dbitems['Items'])):
             new_format.append(dynamo_obj_to_python_obj(dbitems['Items'][i]))
-        print('Converted records', json.dumps(new_format, cls=DecimalEncoder))
+        #print('Converted records', json.dumps(new_format, cls=DecimalEncoder))
         return respond(None, new_format, table)
     else:
         return respond(ValueError('Unsupported method "{}"'.format(operation)))
