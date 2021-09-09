@@ -1,7 +1,15 @@
 import boto3
 import json
+import decimal
 from boto3.dynamodb.types import TypeDeserializer
 dynamo = boto3.client('dynamodb')
+
+
+class DecimalEncoder(json.JSONEncoder):
+    def default(self, o):
+        if isinstance(o, decimal.Decimal):
+            return str(o)
+        return super(DecimalEncoder, self).default(o)
 
 
 def dynamo_obj_to_python_obj(dynamo_obj: dict) -> dict:
@@ -19,7 +27,7 @@ def respond(err, res, tablename):
         }
     return {
         'statusCode': '400' if err else '200',
-        'body': err.message if err else json.dumps(results),
+        'body': err.message if err else json.dumps(results, cls=DecimalEncoder),
         'headers': {
             'Content-Type': 'application/json',
         },
@@ -45,7 +53,7 @@ def lambda_handler(event, context):
         new_format = []
         for i in range(len(dbitems['Items'])):
             new_format.append(dynamo_obj_to_python_obj(dbitems['Items'][i]))
-        print('Converted records', json.dumps(new_format, indent=2))
+        print('Converted records', json.dumps(new_format, cls=DecimalEncoder))
         return respond(None, new_format, table)
     else:
         return respond(ValueError('Unsupported method "{}"'.format(operation)))
