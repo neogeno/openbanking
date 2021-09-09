@@ -9,7 +9,7 @@ class TestHandlerCase(unittest.TestCase):
         print("testing Lambda response with credit-card event object")
         result = index.lambda_handler(eventobj, {})
         print(result)
-        self.assertEqual(result['statusCode'], 200)
+        self.assertEqual(result['statusCode'], '200')
         self.assertEqual(result['headers']['Content-Type'], 'application/json')
         #self.assertIn('Octank Card', result['body'])
 
