@@ -4,7 +4,7 @@ import decimal
 from boto3.dynamodb.types import TypeDeserializer
 dynamo = boto3.client('dynamodb')
 
-
+#Comment goes here
 class DecimalEncoder(json.JSONEncoder):
     def default(self, o):
         if isinstance(o, decimal.Decimal):
